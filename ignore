@@ -1,0 +1,8 @@
+.DS_Store
+
+! .github/
+! .gitignore
+! .gitattributes
+! .git/
+.yarn/*
+! .bundle/

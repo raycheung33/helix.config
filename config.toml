@@ -1,0 +1,51 @@
+theme = "dcray"
+
+[editor]
+line-number = "absolute"
+bufferline = "always"
+
+[keys.insert]
+C-s = ["normal_mode", ":w"]
+C-f = "completion"
+
+[keys.normal]
+y = "yank_to_clipboard"
+p = "paste_clipboard_after"
+P = "paste_clipboard_before"
+d = "delete_selection_noyank"
+c = "change_selection_noyank"
+R = "replace_selections_with_clipboard"
+C-s = ":w"
+X = ["extend_line_up", "extend_to_line_bounds"]
+C-k = ["move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up"]
+C-j = ["move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down"]
+A-k = ["move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up", "move_visual_line_up"]
+A-j = ["move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down", "move_visual_line_down"]
+C-b = [":buffer-close"]
+
+[keys.normal."m"]
+k = ["select_mode", "extend_to_line_bounds", "match_brackets", "extend_to_line_bounds", "normal_mode"]
+
+[keys.select]
+y = "yank_to_clipboard"
+p = "paste_clipboard_after"
+P = "paste_clipboard_before"
+d = "delete_selection_noyank"
+c = "change_selection_noyank"
+R = "replace_selections_with_clipboard"
+X = ["extend_line_up", "extend_to_line_bounds"]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "underline"
+select = "block"
+
+[editor.whitespace.render]
+space = "all"
+tab = "none"
+nbsp = "all"
+nnbsp = "all"
+newline = "all"
+
+[editor.file-picker]
+hidden = false

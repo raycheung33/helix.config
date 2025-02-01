@@ -1,0 +1,493 @@
+{
+  "Console log": {
+    "prefix": "l",
+    "body": ["console.log(`$1` )"]
+  },
+
+  "dcStore": {
+    "prefix": "dcStore",
+    "body": [
+      "import {types as tt} from 'mobx-state-tree';",
+      "",
+      "const Store = tt",
+      ".model('$1', {",
+      "id: tt.optional(tt.identifier, ''),",
+      "})",
+      "",
+      "export default Store;"
+    ]
+  },
+
+  "dcView": {
+    "prefix": "dcView",
+    "body": [
+      "import * as React from 'react';",
+      "import {View} from 'react-native';",
+      "import {useStore} from 'mobx-store-provider';",
+      "import {observer} from 'mobx-react-lite';",
+      "import RootStore from '../../app/root/Store';",
+      "import DCText from '../../app/components/DCText';",
+      "",
+      "const DCView = ({route, navigation}) => {",
+      "  const root = useStore(RootStore);",
+      "  const str = root.str;",
+      "  const color = root.theme.color;",
+      "  const self = root.navigation.storeFromRoute(route);",
+      "",
+      "  React.useLayoutEffect(() => {",
+      "    navigation.setOptions({",
+      "      headerTitle: str.t('$2'),",
+      "      headerLargeTitle: false,",
+      "      headerStyle: {",
+      "        backgroundColor: color.bg,",
+      "      },",
+      "      headerTitleStyle: {",
+      "        color: color.primary,",
+      "      },",
+      "    });",
+      "  }, []);",
+      "",
+      "  return (",
+      "    <View>",
+      "      <DCText>New view</DCText>",
+      "    </View>",
+      "  );",
+      "};",
+      "",
+      "export default observer(DCView);"
+    ]
+  },
+
+  "dcIcon": {
+    "prefix": "dcIcon",
+    "body": [
+      "import * as React from 'react';",
+      "import { Image } from 'react-native';",
+      "",
+      "const Icon = ({ focused, color, size }) => {",
+      "return (",
+      "<Image",
+      "style={{",
+      "tintColor: color,",
+      "resizeMode: 'contain',",
+      "height: size,",
+      "width: size,",
+      "}}",
+      "source={require('./res/$1.png')}",
+      "/>",
+      ");",
+      "};",
+      "",
+      "export default Icon;"
+    ]
+  },
+
+  "dcTab": {
+    "prefix": "dcTab",
+    "body": [
+      "import * as React from 'react';",
+      "import RootStore from '../../app/root/Store';",
+      "import { useStore } from 'mobx-store-provider';",
+      "import Stack from '../../app/app/Stack';",
+      "import $1 from './View';",
+      "import { observer } from 'mobx-react-lite';",
+      "",
+      "const Tab = ({route}) => {",
+      "const root = useStore(AppStore);",
+      "const str = root.str;",
+      "return (",
+      "<Stack.Navigator>",
+      "<Stack.Group>",
+      "<Stack.Screen",
+      "name={'$1'}",
+      "component={$1}",
+      "      initialParams={{...route.params}}",
+      "/>",
+      "</Stack.Group>",
+      "</Stack.Navigator>",
+      ");",
+      "};",
+      "",
+      "export default observer(Tab);"
+    ]
+  },
+
+  "dcString": {
+    "prefix": "dcString",
+    "body": ["$1: tt.optional(tt.string, ''),"]
+  },
+
+  "dcID": {
+    "prefix": "dcID",
+    "body": ["id: tt.optional(tt.identifier, ''),"]
+  },
+
+  "dcActions": {
+    "prefix": "dcActions",
+    "body": [".actions(self => ({", "$1", "}))"]
+  },
+
+  "dcViews": {
+    "prefix": "dcViews",
+    "body": [".views(self => ({", "$1", "}))"]
+  },
+
+  "dcFlow": {
+    "prefix": "dcFlow",
+    "body": [
+      "    afterAttach() {",
+      "      self.request();",
+      "    },",
+      "",
+      "    request: flow(function* request() {",
+      "      self.requestState = 'loading';",
+      "      const env = getEnv(self).$1;",
+      "      try {",
+      "        const response = yield env.request();",
+      "        self.updateStore(response);",
+      "        self.requestState = 'done';",
+      "      } catch (error) {",
+      "        const str = getRoot(self).str;",
+      "        self.errorMessage = ErrorMessage.map(str, error);",
+      "        self.requestState = 'error';",
+      "      }",
+      "    }),",
+      "",
+      "    updateStore(response) {",
+      "      const {$2} = response;",
+      "    },"
+    ]
+  },
+
+  "dcComponent": {
+    "prefix": "dcComponent",
+    "body": [
+      "import * as React from 'react';",
+      "import {View} from 'react-native'",
+      "import {useStore} from 'mobx-store-provider';",
+      "import {observer} from 'mobx-react-lite';",
+      "import RootStore from '../../app/root/Store';",
+      "",
+      "const DCView = props => {",
+      "  const root = useStore(RootStore);",
+      "  const {style, ...rest} = props;",
+      "  return <View style={{...style}} {...rest}></View>;",
+      "};",
+      "",
+      "export default observer(DCView);"
+    ]
+  },
+
+  "dcCommentJSX": {
+    "prefix": "dcCommentJSX",
+    "body": ["{/* $1 */}"]
+  },
+
+  "dcFlatList": {
+    "prefix": "dcFlatList",
+    "body": [
+      "  return (",
+      "      <FlatList",
+      "        data={self.items.slice()}",
+      "        renderItem={({item}) => <ItemView self={item} />}",
+      "        contentContainerStyle={{",
+      "          paddingTop: Style.gap,",
+      "          paddingBottom: Style.gap,",
+      "          gap: Style.gap,",
+      "        }}",
+      "      />",
+      "  );"
+    ]
+  },
+
+  "dcFlatList2Column": {
+    "prefix": "dcFlatList2Column",
+    "body": [
+      "const saveAreaInsets = useSafeAreaInsets();",
+      "    const {width: screenWidth} = useWindowDimensions();",
+      "    const itemWidth = (screenWidth - Style.gap) / 2;",
+      "",
+      "  const ItemToRender = observer(({item}) => <View style={{width: itemWidth}}><ItemView self={item} /></View>);",
+      "    const keyExtractor = item => item.id;",
+      "",
+      "    return (",
+      "      <View style={{flex: 1, backgroundColor: color.bg}}>",
+      "        <FlatList",
+      "          columnWrapperStyle={{ gap: Style.gap}}",
+      "          numColumns={2}",
+      "          data={self.items.slice()}",
+      "        renderItem={(props) => <ItemToRender {...props} />}",
+      "          keyExtractor={keyExtractor}",
+      "          contentContainerStyle={{",
+      "            paddingTop: saveAreaInsets.top,",
+      "            paddingBottom: saveAreaInsets.bottom,",
+      "            gap: Style.gap,",
+      "          }}",
+      "        />",
+      "      </View>",
+      "    );",
+      "  };"
+    ]
+  },
+
+  "dcSectionList": {
+    "prefix": "dcSectionList",
+    "body": [
+      "    const renderSectionHeader = ({section: {title}}) => {",
+      "      return (",
+      "        <View",
+      "          style={{",
+      "            paddingLeft: Style.gap,",
+      "            paddingRight: Style.gap,",
+      "            paddingTop: Style.la2,",
+      "            paddingBottom: Style.la2,",
+      "            backgroundColor: color.bg,",
+      "          }}>",
+      "          <DCText style={{...Style.font.title}}>{title}</DCText>",
+      "        </View>",
+      "      );",
+      "    };",
+      "",
+      "    const ItemToRender = observer(({item}) => <ItemView self={item} />);",
+      "    const keyExtractor = section => section.id;",
+      "",
+      "    return (",
+      "      <SectionList",
+      "        columnWrapperStyle={{gap: Style.gap}}",
+      "        sections={self.sections.slice()}",
+      "        renderSectionHeader={renderSectionHeader}",
+      "        renderItem={(props) => <ItemToRender {...props} />}",
+      "        keyExtractor={keyExtractor}",
+      "        contentContainerStyle={{",
+      "          gap: Style.gap,",
+      "        }}",
+      "      />",
+      "    );"
+    ]
+  },
+
+  "dcItemView": {
+    "prefix": "dcItemView",
+    "body": [
+      "      import * as React from 'react';",
+      "  import {View} from 'react-native';",
+      "  import {useStore} from 'mobx-store-provider';",
+      "  import {observer} from 'mobx-react-lite';",
+      "  import RootStore from '../../app/root/Store';",
+      "  import DCText from '../../app/components/DCText';",
+      "",
+      "  const DCView = ({self}) => {",
+      "    const root = useStore(RootStore);",
+      "    return (",
+      "      <View>",
+      "        <DCText>Item View</DCText>",
+      "      </View>",
+      "    );",
+      "  };",
+      "",
+      "  export default observer(DCView);"
+    ]
+  },
+
+  "dcUseLayoutEffect": {
+    "prefix": "dcUseLayoutEffect",
+    "body": [
+      "      React.useLayoutEffect(() => {",
+      "      navigation.setOptions({",
+      "        headerTitle: str.t('$1'),",
+      "        headerLargeTitle: true,",
+      "        headerStyle: {",
+      "          backgroundColor: color.bg,",
+      "        },",
+      "        headerTitleStyle: {",
+      "          color: color.primary,",
+      "        },",
+      "      });",
+      "    }, []);"
+    ]
+  },
+
+  "dcEnv": {
+    "prefix": "dcEnv",
+    "body": [
+      "import api from '../../app/server/api';",
+      "import sleep from '../../app/utils/sleep';",
+      "",
+      "const online = {",
+      "  request: async json => {",
+      "    return await api.getData('/client/$1', json);",
+      "  },",
+      "};",
+      "",
+      "const skeleton = {",
+      "  $2",
+      "};",
+      "",
+      "const mockResponses = [",
+      "  //{",
+      "  //  failure: {message: 'mockError', sc_trace_id: 'a0b1c2d3'},",
+      "  //},",
+      "  {",
+      "    success: skeleton,",
+      "  },",
+      "];",
+      "",
+      "let mockResponsesID = 0;",
+      "",
+      "const offline = {",
+      "  request: async () => {",
+      "    await sleep();",
+      "    let mockResponse = mockResponses[mockResponsesID];",
+      "    mockResponsesID = (mockResponsesID + 1) % mockResponses.length;",
+      "    if (mockResponse.success) {",
+      "      return mockResponse.success;",
+      "    } else {",
+      "      throw mockResponse.failure;",
+      "    }",
+      "  },",
+      "};",
+      "",
+      "const current = isOnline => {",
+      "  return isOnline ? online : offline;",
+      "};",
+      "",
+      "export {online, offline, current};"
+    ]
+  },
+
+  "dcSubview": {
+    "prefix": "dcSubview",
+    "body": ["const $1 = observer(()=>(<View></View>))"]
+  },
+
+  "dcViewObserver": {
+    "prefix": "dcViewObserver",
+    "body": [
+      "      const $1 = observer(() => (",
+      "      <View><DCText></DCText></View>",
+      "    ));"
+    ]
+  },
+
+  "dcSkeleton": {
+    "prefix": "dcSkeleton",
+    "body": ["<Sk show={isLoading}>"]
+  },
+
+  "dcRequestState": {
+    "prefix": "dcRequestState",
+    "body": [
+      "      requestState: RequestState.loading,",
+      "      errorMessage: tt.optional(tt.string, ''),"
+    ]
+  },
+
+  "dcImportRequestState": {
+    "prefix": "dcImportRequestState",
+    "body": [
+      "import RequestState from '../../app/utils/RequestState';",
+      "import ErrorMessage from '../../app/services/ErrorMessage';"
+    ]
+  },
+
+  "dcSafeAreaInsets": {
+    "prefix": "dcSafeAreaInsets",
+    "body": [
+      "      import {useSafeAreaInsets} from 'react-native-safe-area-context';",
+      "      import {useHeaderHeight} from '@react-navigation/elements';",
+      "    const safeAreaInsets = useSafeAreaInsets();",
+      "        const headerHeight = useHeaderHeight();"
+    ]
+  },
+
+  "dcIsTransitioning": {
+    "prefix": "dcIsTransitioning",
+    "body": [
+      "    const [isTransitioning, setIsTransitioning] = React.useState(false);",
+      "    useFocusEffect(",
+      "      React.useCallback(() => {",
+      "        setIsTransitioning(false);",
+      "      }, []),",
+      "    );"
+    ]
+  },
+
+  "dcShowNextView": {
+    "prefix": "dcShowNextView",
+    "body": [
+      "      showNextView() {",
+      "        const root = getRoot(self);",
+      "        const store = $1Store.create({});",
+      "        self.detailStore = store;",
+      "        root.navigation.goTo('$1View', store);",
+      "      },"
+    ]
+  },
+
+  "dcViewStyle": {
+    "prefix": "dcViewStyle",
+    "body": ["<View style={{}} >", "$CLIPBOARD", "</View>"]
+  },
+
+  "dcArrayMap": {
+    "prefix": "dcArrayMap",
+    "body": ["Array.from({length: $1}).map((_, i) => ({id: `Id${i}`}))"]
+  },
+
+  "dcGoToView": {
+    "prefix": "dcGoToView",
+    "body": [
+      "const root = getRoot(self);",
+      "const store = root.navigation.createStore($1Store, {});",
+      "self.$2Store = store;",
+      "root.navigation.pushToView('$1View', store);"
+    ]
+  },
+
+  "dcVolatile": {
+    "prefix": "dcVolatile",
+    "body": [
+      "    .volatile(_ => ({",
+      "      callback$1: tt.custom,",
+      "    }))",
+      "    .actions(self => ({",
+      "      updateCallback$1(callback$1) {",
+      "        self.callback$1 = callback$1;",
+      "      },",
+      "    }))"
+    ]
+  },
+
+  "dcRequestView": {
+    "prefix": "dcRequestView",
+    "body": [
+      "    const requestView = RequestView({self: self});",
+      "    if (requestView) {",
+      "      return requestView;",
+      "    }",
+      "    return <DoneView />;"
+    ]
+  },
+
+  "dcFlowjs": {
+    "prefix": "dcFlowjs",
+    "body": [
+      "  import Stack from '../../app/main/Stack';",
+      "  import View from './View';",
+      "",
+      "  const Flow = ({route, navigation}) => {",
+      "    return (",
+      "      <Stack.Navigator>",
+      "        <Stack.Screen",
+      "          name={'View'}",
+      "          component={View}",
+      "          initialParams={{...route.params}}",
+      "        />",
+      "      </Stack.Navigator>",
+      "    );",
+      "  };",
+      "",
+      "  export default Flow;"
+    ]
+  }
+}
